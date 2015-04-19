@@ -1,0 +1,272 @@
+/*---------------------------------------
+/*
+/*  Ce script fait référence au fichier
+/*
+/*  syntheseStructureCode.cbp
+/*
+/*---------------------------------------
+
+
+
+
+
+*/
+
+
+
+#include <iostream>     // Inclut la bibliothèque iostream (affichage de texte)
+
+#include <string>       // À spécifier si l'on souhaite utiliser des chaines de caractères
+
+#include <cmath>        // Accès à plus de fonctions mathématiques
+
+using namespace std;    // Indique quel espace de noms on va utiliser
+
+
+/*
+Fonction principale "main"
+Tous les programmes commencent par la fonction main
+*/
+int main()
+
+{
+    //première étape : déclaration des variables
+
+    string prenom("") ;     // chaine de caractères on aurait pu seleument écrire : "string prenom" sans les ()
+    string nom("") ;        // entre guillemets  // pour saisir des phrases penser à getline
+
+    string const reponseAttendue("bah...Non pourquoi ?");   // Margaux 's tribute
+    string reponseTest("");
+
+    bool autorisation(false) ;              // booleen true ou false
+    bool& refAutorisation(autorisation) ;   // reference
+
+    unsigned int age(0) ;  // entier positif
+
+    double  moyenne(-0.0) ;   // nombre reel // NB les virgules doivent etre matérialisées par des points
+
+    char initialeNom(' ') ;// entre apostrophes
+
+    //deuxième étape affichage console avec saisie des données
+
+    // "cin >>" et "cout <<"
+    cout << " Quel est ton prénom ?" << endl;
+    cin >> prenom ;
+
+    cin.ignore();
+
+    cout << " Quel est ton nom ?" << endl;
+    getline(cin, nom);
+
+    // cin.ignore();
+    
+    while ( reponseTest != reponseAttendue)
+        {
+            cout << " Connais-tu le mot de passe ?" << endl;
+            getline(cin, reponseTest); // si l'on avait saisi un double" avant il aurait fallu ajouter une ligne " cin.ignore()
+
+            if (reponseTest == reponseAttendue)
+            {
+                refAutorisation = true;
+                cout <<"la bienvenue à toi "<< prenom << endl;
+            }
+            else
+            {
+                cout << prenom << " tu n'es pas autorisé à poursuivre," << endl;
+                cout << "ton exploration s'arrete ici tant que tu n'as pas le mot de passe, je répète : " << endl;
+            }
+        }
+
+   // specificités d'affectations par calcul
+
+    double nb1      (-0.0);
+    double nb2      (-0.0);
+    double resultat (-0.0);
+
+    cout << "entrer un premier nombre : " << endl;
+    cin >> nb1;
+
+    cout << "entrer un deuxième nombre : " << endl;
+    cin >> nb2;
+
+
+    resultat = nb1;
+    resultat +=nb2;     // equivalent à :  resultat = resultat + nb2
+    //
+    cout << "le resultat de l'addition "<< nb1 <<" + "<<nb2 <<" vaut : " << resultat << endl;
+
+
+    resultat = nb1;
+    resultat -=nb2;     // equivalent à :  resultat = resultat - nb2
+    //
+    cout << "le resultat de la soustraction "<< nb1 <<" - "<<nb2 <<" vaut : " << resultat << endl;
+
+
+    resultat = nb1;
+    resultat *=nb2;     // equivalent à :  resultat = resultat * nb2
+    //
+    cout << "le resultat de la multiplication "<< nb1 <<" * "<<nb2 <<" vaut : " << resultat << endl;
+
+
+    resultat = nb1;
+    resultat /=nb2;     // equivalent à :  resultat = resultat / nb2
+    //
+    cout << "le resultat de la division " << nb1 <<" / "<<nb2 <<" vaut : " << resultat << endl;
+
+
+    resultat = nb1;
+    resultat ++ ;    // equivalent à :  resultat = resultat + 1
+    //
+    cout << "l'incrementation de "<< nb1 << " de  1 vaut : " << resultat << endl;
+
+
+    resultat = nb1;
+    resultat -- ;     // equivalent à :  resultat = resultat + 1
+    //
+    cout << "la décrementation de "<< nb1 <<" de  1 vaut : " << resultat << endl;
+
+
+
+    int nbEntier1(-0);
+    int nbEntier2(-0);
+    int resultEntier(-0);
+    cout << "entrer un premier nombre entier : " << endl;
+    cin >> nbEntier1;
+
+    cout << "entrer un deuxième nombre entier : " << endl;
+    cin >> nbEntier2;
+
+    resultEntier = nbEntier1 ;
+    resultEntier %= nbEntier2 ; // equivalent à resultEntier= resultEntier % nbEntier2
+    //
+    cout << "le reste de la division de " << nbEntier1 << " par " << nbEntier2 << " est : " << resultEntier << endl;
+
+
+    /* Quelques fontions mathématiques :
+    ------------------------------------
+
+    Racine carrée : sqrt()
+
+    sinus : sin ()          // les calculs trigonométriques (sinus,
+    cosinus : cos()         // cosinus, tangente ...se basent
+    tangente : tan()        // sur des nombres exprimés en radian.
+
+
+    puissance : pow (a,b)   // a exposant b  ou a puissance b.
+    exponentielle : exp()
+    logarithme nép. : log()
+    log. en base 10 : log10()
+
+    valeur absolue : fabs()
+
+    arrondi inf. : floor()
+    arrondi sup. : ceil()
+
+    ************************************/
+
+
+    /* symboles des opérateurs de tests de condition :
+    --------------------------------------------------
+
+    ==  égal,
+    >   supérieur,
+    <   inférieur,
+    >=  supérieur ou égal,
+    <=  inférieur ou égal,
+    !=  différent.
+
+    ***************************************************/
+
+
+    /* SWITCH  (équivalent case of de turbo Pascal)
+    -----------------------------------------------
+    Exemple : */
+
+    unsigned int numeroMois(0);
+
+    bool numeroRealiste(false);
+
+    string mois("non affecté");
+    string& refPrenom(prenom);
+    string repPrenom("");
+
+    do
+    {
+        cout << "entrez le numero du mois de votre naissance :" << endl;
+        cin >> numeroMois;
+
+        numeroRealiste = (1 <= numeroMois && numeroMois <= 12);   // on peut utiliser "and" à la place de "&&"
+                                                                // le symbole de "or" est "||" il s'obtient avec [ALT GR]+[6]
+        if (numeroRealiste)
+        {
+            switch (numeroMois)
+            {
+                case  1 : mois = "janvier";   break;
+                case  2 : mois = "février";   break;
+                case  3 : mois = "mars";      break;
+                case  4 : mois = "avril";     break;
+                case  5 : mois = "mai";       break;
+                case  6 : mois = "juin";      break;
+                case  7 : mois = "juillet";   break;
+                case  8 : mois = "aout";      break;
+                case  9 : mois = "septembre"; break;
+                case 10 : mois = "octobre";   break;
+                case 11 : mois = "novembre";  break;
+                case 12 : mois = "décembre";  break;
+            }
+
+        cout << "vous etes né(e) au mois de " << mois << endl;
+
+        }
+        else
+        {
+            repPrenom = "***(0v0)" + refPrenom + "(0v0)***";
+            cout << "Tu te moques de moi ! Tu es étrange " << repPrenom << " ... " << endl; // Margaux 's tribute
+            cout << " Allez ! on recommence ..." << endl;
+        }
+
+    }
+    while (! numeroRealiste);
+
+
+    int compteur(0);
+
+    for (compteur = 0 ; compteur < 10 ; compteur ++) //for (int compteur(0) ; compteur < 10 ; compteur ++)
+    {
+        cout << compteur << endl;
+    }
+
+return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
